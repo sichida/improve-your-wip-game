@@ -9,6 +9,7 @@ class TaskController {
 
 export const TaskComponentDefinition: ng.IComponentOptions = {
     bindings: {
+        task: '=data'
     },
     template: view,
     controller: TaskController,

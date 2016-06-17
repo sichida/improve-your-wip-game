@@ -2,7 +2,9 @@
  * This class represents a Task
  */
 export class Task {
-    constructor(public startTime: Date = null, public endTime: Date = null) {
+    constructor(public id: int,
+        public startTime: Date = null,
+        public endTime: Date = null) {
     }
 
     start(): void {

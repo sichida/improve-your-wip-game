@@ -1,8 +1,10 @@
 import {Task} from './task.entity.ts';
 
 describe('Task', () => {
-  it('should be instanciable', () => {
+  it('should be have an identifier', () => {
     expect(new Task()).toBeDefined();
+    expect(new Task(1).id).toBeDefined();
+    expect(new Task(1).id).toEqual(1);
   });
   it('should have a null startTime and a null endTime', () => {
     const task: Task = new Task();
