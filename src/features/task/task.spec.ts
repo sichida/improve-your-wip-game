@@ -38,6 +38,6 @@ describe('Task', () => {
     const task2: Task = new Task();
     task2.start();
     task2.stop();
-    expect(task2.start.bind(task)).toThrow(new Error('Cannot start a task that already started'));
+    expect(task2.start.bind(task2)).toThrow(new Error('Cannot start a task that already started'));
   });
 });

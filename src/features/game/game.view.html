@@ -1,3 +1,11 @@
-<section>
-    <task ng-repeat="task in ctrl.tasks" class="row" data="task"></task>
+<section class="container">
+    <section class="row-fluid">
+        <section class="col-xs-8">
+            <article class="row">
+                <button class="btn btn-primary" ng-click="ctrl.startTask()">In</button>
+                <button class="btn btn-warning" ng-click="ctrl.stopTask()">Out</button>
+            </article>
+            <task ng-repeat="task in ctrl.tasks" started-time="ctrl.startTime" class="row" data="task"></task>
+        </section>
+    </section>
 </section>
