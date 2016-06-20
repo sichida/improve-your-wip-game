@@ -23,4 +23,12 @@ export class GameController {
         }
         this.tasks[++this.stopIndex].stop();
     }
+    
+    checkKeypress(event) {
+        if (event.keyCode === 105) {
+            this.startTask();
+        } else if (event.keyCode === 111) {
+            this.stopTask();
+        }
+    }
 }
