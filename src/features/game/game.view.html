@@ -1,11 +1,18 @@
 <section class="container" tabindex="0" ng-keypress="ctrl.checkKeypress($event)">
     <section class="row-fluid">
-        <section class="col-xs-8">
+        <section class="col-xs-12 col-sm-6">
             <article class="row">
                 <button class="btn btn-primary" ng-click="ctrl.startTask()">In</button>
                 <button class="btn btn-warning" ng-click="ctrl.stopTask()">Out</button>
             </article>
             <task ng-repeat="task in ctrl.tasks" started-time="ctrl.startTime" class="row" data="task"></task>
+        </section>
+        <section class="col-xs-12 col-sm-6">
+            <article class="row">
+                <button class="btn btn-info" ng-click="showReport = !showReport">Report</button>
+            </article>
+            <!-- ng-if="showReport"  -->
+            <canvas tc-chartjs-line chart-data="ctrl.data" chart-options="ctrl.options"></canvas>
         </section>
     </section>
 </section>
