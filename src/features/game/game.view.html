@@ -1,13 +1,21 @@
-<section class="container" tabindex="0" ng-keypress="ctrl.checkKeypress($event)">
+<section class="container">
     <section class="row-fluid">
-        <section class="col-xs-12 col-sm-6">
-            <article class="row">
-                <button class="btn btn-primary" ng-click="ctrl.startTask()">In</button>
-                <button class="btn btn-warning" ng-click="ctrl.stopTask()">Out</button>
-            </article>
+        <section class="col-xs-12 col-sm-4">
+            <section class="row">
+                <section class="col-xs-12">
+                    <button class="btn btn-primary" ng-click="ctrl.startTask()">In</button>
+                    <button class="btn btn-warning" ng-click="ctrl.stopTask()">Out</button>
+                </section>
+                <p class="col-xs-12">You can use shortcuts 'i' to start a task and 'o' to end a task.</p>
+            </section>
+            <section class="row" ng-if="ctrl.tasks">
+                <div class="col-xs-2">n°</div>
+                <div class="col-xs-5">Started at</div>
+                <div class="col-xs-5">Completed at</div>
+            </section>
             <task ng-repeat="task in ctrl.tasks" started-time="ctrl.startTime" class="row" data="task"></task>
         </section>
-        <section class="col-xs-12 col-sm-6">
+        <section class="col-xs-12 col-sm-8">
             <section class="row">
                 <button class="pull-right btn btn-info" ng-click="ctrl.computeReport()">Report</button>
             </section>

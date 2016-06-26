@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 import {Task} from '../task/task.entity.ts';
 import {DiagramOptions, DiagramService} from './diagram.service.ts';
 
@@ -7,11 +8,16 @@ export class GameController {
     stopIndex: number = -1;
     startTime: Date = null;
     chartOptions: DiagramOptions;
+    data:Object;
     showReport:boolean;
 
-    constructor() {
+    constructor($document:angular.IDocumentService, $scope:angular.IScope) {
         this.tasks = new Array<Task>();
         this.chartOptions = new DiagramOptions();
+        $document.on('keypress', event => {
+            this.checkKeypress(event)
+            $scope.$digest();
+        });
     }
 
     startTask() {
@@ -60,32 +66,32 @@ export class GameController {
             datasets: [
                 {
                     label: 'TODO',
-                    fillColor: 'rgba(220,220,220,0.2)',
-                    strokeColor: 'rgba(220,220,220,1)',
-                    pointColor: 'rgba(220,220,220,1)',
+                    fillColor: 'rgba(255,255,0,0.3)',
+                    strokeColor: 'rgba(255,255,0,1)',
+                    pointColor: 'rgba(255,255,0,1)',
                     pointStrokeColor: '#fff',
                     pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    pointHighlightStroke: 'rgba(255,255,0,1)',
                     data: DiagramService.computeTodoPoints(this.tasks, times)
                 },
                 {
                     label: 'In progress',
-                    fillColor: 'rgba(151,187,205,0.2)',
-                    strokeColor: 'rgba(151,187,205,1)',
-                    pointColor: 'rgba(151,187,205,1)',
+                    fillColor: 'rgba(0,0,255,0.3)',
+                    strokeColor: 'rgba(0,0,255,0,1)',
+                    pointColor: 'rgba(0,0,255,0,1)',
                     pointStrokeColor: '#fff',
                     pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(151,187,205,1)',
+                    pointHighlightStroke: 'rgba(0,0,255,0,1)',
                     data: DiagramService.computeInProgressPoints(this.tasks, times)
                 },
                 {
                     label: 'Done',
-                    fillColor: 'rgba(151,187,205,0.2)',
-                    strokeColor: 'rgba(151,187,205,1)',
-                    pointColor: 'rgba(151,187,205,1)',
+                    fillColor: 'rgba(0,255,0,0.3)',
+                    strokeColor: 'rgba(0,255,0,1)',
+                    pointColor: 'rgba(0,255,0,1)',
                     pointStrokeColor: '#fff',
                     pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(151,187,205,1)',
+                    pointHighlightStroke: 'rgba(0,255,0,1)',
                     data: DiagramService.computeDonePoints(this.tasks, times)
                 }
             ]
