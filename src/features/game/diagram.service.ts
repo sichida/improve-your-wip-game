@@ -1,3 +1,6 @@
+import {Task} from '../task/task.entity.ts';
+import angular from 'angular';
+
 export class DiagramOptions {
     responsive: boolean = true;
     ///Boolean - Whether grid lines are shown across the chart
@@ -34,5 +37,65 @@ export class DiagramOptions {
     // Function - on animation complete
     onAnimationComplete() {
 
+    }
+}
+
+export class DiagramService {
+    static convertSecond(input): string {
+        var minutes = parseInt(input / 60, 10);
+        var seconds = input % 60;
+        return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    static getTimes(tasks: Array<Task>, increment: number): Array<Date> {
+        let startDate: Date = null;
+        let endDate: Date = null;
+        for (let task of tasks) {
+            if (null === startDate || task.startTime < startDate) {
+                startDate = angular.copy(task.startTime);
+            }
+            if (null === endDate || task.endTime > endDate) {
+                endDate = angular.copy(task.endTime);
+            }
+        }
+        const abscissa = new Array<Date>();
+        while (startDate < endDate) {
+            abscissa.push(angular.copy(startDate));
+            startDate.setSeconds(startDate.getSeconds() + increment);
+        }
+        return abscissa;
+    }
+    static computeTodoPoints(tasks: Array<Task>, times: Array<Date>) {
+        const todoList: Array<number> = new Array<number>();
+        for (const date of times) {
+            todoList.push(tasks.length);
+        }
+        return todoList;
+    }
+    static computeInProgressPoints(tasks: Array<Task>, times: Array<Date>) {
+        const inProgressList: Array<number> = new Array<number>();
+        for (const marker of times) {
+            let total: number = 0;
+            for (const task of tasks) {
+                if (task.startTime.getTime() <= marker.getTime()) {
+                    total++;
+                }
+            }
+            inProgressList.push(total);
+        }
+        return inProgressList;
+    }
+    static computeDonePoints(tasks: Array<Task>, times: Array<Date>) {
+        const doneList: Array<number> = new Array<number>();
+        for (const marker of times) {
+            let total: number = 0;
+            for (const task of tasks) {
+                if (task.endTime.getTime() <= marker.getTime()) {
+                    total++;
+                }
+            }
+            doneList.push(total);
+        }
+        return doneList;
     }
 }
