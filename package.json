@@ -1,0 +1,123 @@
+{
+  "name": "improve-your-wip-game",
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "jspm install",
+    "start": "live-server",
+    "test": "karma start"
+  },
+  "jspm": {
+    "name": "app",
+    "main": "app.js",
+    "directories": {
+      "lib": "src"
+    },
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.5.6",
+      "angular-resource": "github:angular/bower-angular-resource@^1.5.6",
+      "angular-ui-router": "github:angular-ui/angular-ui-router-bower@^0.3.0",
+      "bootstrap": "github:twbs/bootstrap@^3.3.6",
+      "chart.js": "npm:chart.js@2.1.6",
+      "css": "github:systemjs/plugin-css@^0.1.23",
+      "tc-angular-chartjs": "npm:tc-angular-chartjs@2.0.0",
+      "typescript-collections": "npm:typescript-collections@^1.1.2"
+    },
+    "devDependencies": {
+      "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.16",
+      "text": "github:systemjs/plugin-text@^0.0.8"
+    },
+    "peerDependencies": {
+      "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
+      "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
+    },
+    "overrides": {
+      "github:angular/bower-angular-resource@1.5.6": {
+        "main": "angular-resource",
+        "registry": "jspm",
+        "dependencies": {
+          "angular": "^1.4.8"
+        },
+        "meta": {
+          "angular-resource.js": {
+            "deps": [
+              "angular"
+            ],
+            "format": "global"
+          }
+        }
+      },
+      "github:angular/bower-angular@1.5.6": {
+        "main": "angular",
+        "meta": {
+          "angular.js": {
+            "exports": "angular",
+            "format": "global"
+          }
+        }
+      },
+      "github:twbs/bootstrap@3.3.6": {
+        "shim": {
+          "js/bootstrap": {
+            "deps": [
+              "jquery"
+            ],
+            "exports": "$"
+          }
+        },
+        "dependencies": {
+          "jquery": "2"
+        },
+        "files": [
+          "dist",
+          "fonts",
+          "js",
+          "css",
+          "less",
+          "grunt",
+          "LICENSE"
+        ],
+        "systemjs": {
+          "main": "dist/js/bootstrap.js",
+          "modules": {
+            "dist/js/bootstrap.js": {
+              "deps": [
+                "jquery"
+              ],
+              "exports": "$"
+            }
+          }
+        }
+      },
+      "npm:jquery@2.2.4": {
+        "format": "amd"
+      },
+      "npm:moment@2.13.0": {
+        "jspmNodeConversion": false
+      },
+      "npm:typescript@1.8.10": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-jspm": "^2.1.1",
+    "karma-typescript-preprocessor": "^0.2.0",
+    "live-server": "^1.0.0"
+  }
+}

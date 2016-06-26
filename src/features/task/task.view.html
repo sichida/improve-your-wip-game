@@ -1,0 +1,5 @@
+<article>
+    <div class="col-xs-2">#{{ctrl.task.id}}</div>
+    <div class="col-xs-5">{{ctrl.displayStartTime(ctrl.task)}}</div>
+    <div class="col-xs-5" ng-if="ctrl.task.endTime">{{ctrl.displayEndTime(ctrl.task)}}</div>
+</article>
