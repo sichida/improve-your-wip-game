@@ -60,9 +60,10 @@ export class GameController {
         } else {
             this.showReport = true;
         }
-        const times = DiagramService.getTimes(this.tasks, 5);
+        const times = DiagramService.getTimes(this.tasks, 1);
+        const labels = times.map(date => DiagramService.convertSecond(Math.round((date.getTime() - this.startTime.getTime()) / 1000)));
         this.data = {
-            labels: times.map(date => DiagramService.convertSecond(Math.round((date.getTime() - this.startTime.getTime()) / 1000))),
+            labels: labels,
             datasets: [
                 {
                     label: 'TODO',
@@ -93,6 +94,22 @@ export class GameController {
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(0,255,0,1)',
                     data: DiagramService.computeDonePoints(this.tasks, times)
+                }
+            ]
+        };
+
+        this.wipData = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'WIP',
+                    fillColor: 'rgba(0,255,0,0.3)',
+                    strokeColor: 'rgba(0,255,0,1)',
+                    pointColor: 'rgba(0,255,0,1)',
+                    pointStrokeColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(0,255,0,1)',
+                    data: DiagramService.computeWIP(this.tasks, times)
                 }
             ]
         };

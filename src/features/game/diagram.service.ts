@@ -98,4 +98,17 @@ export class DiagramService {
         }
         return doneList;
     }
+    static computeWIP(tasks: Array<Task>, times: Array<Date>) {
+        const wipList: Array<number> = new Array<number>();
+        for (const marker of times) {
+            let total: number = 0;
+            for (const task of tasks) {
+                if (task.startTime.getTime() <= marker.getTime() && task.endTime.getTime() > marker.getTime()) {
+                    total++;
+                }
+            }
+            wipList.push(total);
+        }
+        return wipList;
+    }
 }
